@@ -45,10 +45,20 @@
 > You are what you want to be.
 
 * 1.小程序源码在主干
+  [主干代码为小程序源码](https://github.com/Jasonandy/OneDay.git)
+
 
 * 2.springboot源码在分支
+  [分支代码为服务端源码](https://github.com/Jasonandy/OneDay/tree/dev) 
 
 
+## 四、扫码体验
+
+> You are what you want to be.
+
+<p align="center">
+    <img src="https://upload-images.jianshu.io/upload_images/7802425-43d79e8c6a2243a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="280" height="280" alt="WX" align="left" />
+</p>
 
 ## Contact
 - **Below is my personal contact information. Welcome to exchange and study.**

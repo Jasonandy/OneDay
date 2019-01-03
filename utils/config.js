@@ -19,12 +19,12 @@ module.exports = {
       /**
        * 封装请求的data数据
        */
-      data: {
-        dateTime:'2019-01-01',
-        sign:'You are what you want to be.',
-        token:'please do it just!'
+      //data: {
+        //dateTime:'2019-01-01',
+        //sign:'You are what you want to be.',
+        //token:'please do it just!'
 
-      }
+      //}
     },
 
     /**
