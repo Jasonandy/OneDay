@@ -1,0 +1,7 @@
+#ignored by Jason###
+/logs
+/.settings
+/*.project
+/*.classpath
+####################
+/target

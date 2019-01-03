@@ -1,0 +1,193 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!--  ONEDAY -->
+	<groupId>cn.ucaner</groupId>
+	<artifactId>oneday</artifactId>
+	<version>tuna-1.0</version>
+	<packaging>jar</packaging>
+	
+	<name>oneday</name>
+	<url>http://oneday.ucaner.cn</url>
+	<description>OneDay</description>
+	
+	<!--  spring-boot-starter-parent  -->
+	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>2.0.0.RELEASE</version>
+	    <relativePath/>
+	</parent>
+	
+	
+	<!-- PROPERTIES -->
+	<properties>
+	  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        
+        <!-- pi4j 树莓派  -->
+        <!--  
+	        Unable to determine hardware version. I see: Hardware	: BCM2835
+			 - expecting BCM2708 or BCM2709.
+			If this is a genuine Raspberry Pi then please report this
+			to projects@drogon.net. If this is not a Raspberry Pi then you
+			are on your own as wiringPi is designed to support the
+			Raspberry Pi ONLY.    变更版本 兼容问题 1.2-SNAPSHOT
+        -->
+        
+        <pi4j.version>1.2-SNAPSHOT</pi4j.version>
+        <!-- 百度语音模块 -->
+        <baidu.api.version>4.7.0</baidu.api.version>
+        
+        <jwt.version>3.3.0</jwt.version>
+	</properties>
+
+	
+	<!-- DEPENDENCIES  -->
+    <dependencies>
+    
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- start web 默认引入 jackson-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <!--自动编译 热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!--  commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        
+        <!-- 操作树莓派GPIO的模块 -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-core</artifactId>
+            <version>${pi4j.version}</version>
+        </dependency>
+        
+        <!-- 百度语音  -->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>${baidu.api.version}</version>
+        </dependency>
+        
+        <!-- 语音相关 -->
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>mp3spi</artifactId>
+            <version>1.9.5-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.54</version>
+		</dependency>
+        
+        
+        <!-- jwt https://github.com/jwtk/jjwt  -->
+        <!-- jwt 树莓派接口鉴权  -->
+		<dependency>
+		   <groupId>com.auth0</groupId>
+		   <artifactId>java-jwt</artifactId>
+		   <version>${jwt.version}</version> 
+		</dependency>	
+        
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>oss-snapshots-repo</id>
+			<name>Sonatype OSS Maven Repository</name>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+        
+	<!-- maven-plugin -->
+	<build>
+		<resources>
+	        <resource>
+	        	<directory>src/main/resources</directory>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	             <includes>
+	                 <include>**/*.properties</include>
+	                 <include>**/*.xml</include>
+	             </includes>
+	            <filtering>false</filtering>
+	        </resource>
+        </resources>
+	    <plugins>
+	        <plugin>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-maven-plugin</artifactId>
+	                <configuration>
+	                    <executable>true</executable>
+	                </configuration>
+	                <executions>
+	                    <execution>
+	                        <goals>
+	                            <goal>repackage</goal>
+	                        </goals>
+	                        <configuration>
+	                            <classifier>exec</classifier>
+	                        </configuration>
+	                    </execution>
+	                </executions>
+	            </plugin>
+	    </plugins>
+	</build>
+</project>
