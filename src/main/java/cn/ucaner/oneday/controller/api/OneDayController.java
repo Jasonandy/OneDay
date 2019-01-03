@@ -22,13 +22,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
-
 import cn.ucaner.oneday.common.utils.DateHelper;
 import cn.ucaner.oneday.common.utils.LunarUtils;
 import cn.ucaner.oneday.common.vo.OneDayVo;
 import cn.ucaner.oneday.common.vo.RespBody;
-import cn.ucaner.oneday.common.vo.RespBody.Status;
 
 /**     
 * @Package：cn.ucaner.oneday.controller.api   
@@ -66,7 +63,7 @@ public class OneDayController {
 	*/
 	@RequestMapping("/oneday")
     public RespBody test() {
-		
+		RespBody respBody = new RespBody();
 		/**
 		 * 
 		 * 这里做一次数据的封装
@@ -74,10 +71,16 @@ public class OneDayController {
 		 * 			-- 名言格言 --?? 采用什么样的方案? 使用第三方接口还是?
 		 * 
 		 */
-		OneDayVo oneDayVo = new OneDayVo();
-		Conver2OneDayVo(oneDayVo);
-		logger.info("api--:{}",JSON.toJSONString(oneDayVo));
-		return new RespBody(Status.OK,oneDayVo);
+		OneDayVo oneDayVo = null;
+		try {
+			oneDayVo = new OneDayVo();
+			Conver2OneDayVo(oneDayVo);
+			respBody.addOK(oneDayVo, "恭喜请求成功!");
+		} catch (Exception e) {
+			respBody.addError("请求Error!");
+			logger.error("NowDate:{} api /oneday/v1/oneday 调用失败--:{}",new Date().toString(),e.getMessage());
+		}
+		return respBody;
     }
 	
 	

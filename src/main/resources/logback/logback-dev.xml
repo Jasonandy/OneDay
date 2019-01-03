@@ -9,7 +9,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false" >
 
 	<!-- logback项目名称 -->
-	<property name="appName" value="raspi"/>
+	<property name="appName" value="oneday"/>
 	
     <!-- 日志级别 -->
     <property name="logLevel" value="INFO"/>
