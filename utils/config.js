@@ -12,7 +12,8 @@ module.exports = {
      */
     today: {
 
-       url:  'http://127.0.0.1:9092/oneday/v1/oneday', 
+       //url:  'http://127.0.0.1:9092/oneday/v1/oneday',
+      url: 'https://api.hunterblog.cn/oneday/v1/oneday',
       //url: 'https://dev.xdooi.com/today',
 
       /**
