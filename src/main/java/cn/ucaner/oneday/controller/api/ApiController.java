@@ -17,11 +17,19 @@ package cn.ucaner.oneday.controller.api;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
+
+import cn.ucaner.oneday.common.utils.SpringContextUtil;
 import cn.ucaner.oneday.common.vo.RespBody;
 import cn.ucaner.oneday.common.vo.RespBody.Status;
+import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
+import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 
 /**
 * @Package：cn.ucaner.oneday.controller.api   
@@ -38,11 +46,24 @@ import cn.ucaner.oneday.common.vo.RespBody.Status;
 @RequestMapping(value = "/api/v1")
 public class ApiController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+	
+	 /**
+     * jwt需要做处理的连接
+     */
+    @Autowired
+    private JwtPatternUrl jwtPatternUrl;
+    
+    @Autowired
+    private JwtProperty jwtProperty;
+    
 	@RequestMapping("/test")
     public RespBody jwtToken() {
 		HashMap<Object, Object> hashMap = new HashMap<>();
 		hashMap.put("name", "jwt");
 		hashMap.put("value", "pass");
+		JwtPatternUrl bean = SpringContextUtil.getBean(JwtPatternUrl.class);
+		logger.info("Api--配置注入jwtPatternUrl:{},jwtProperty:{},BEAN:{}",JSON.toJSONString(jwtPatternUrl),JSON.toJSONString(jwtProperty),bean);
 		return new RespBody(Status.OK,hashMap);
     }
 

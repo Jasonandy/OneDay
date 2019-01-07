@@ -28,9 +28,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+
+import com.alibaba.fastjson.JSON;
 
 import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
+import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 
 /**
 * @Package：cn.ucaner.oneday.jwt.filter   
@@ -43,17 +49,26 @@ import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
 * @Modify marker：   
 * @version    V1.0
  */
+@Configuration
+//@Import(JwtPatternUrl.class)
 public class JWTFilter implements  Filter{
-
-    //@Autowired
-    //private JwtProperty jwtProperty;
+	
+	private static final Logger logger = LoggerFactory.getLogger(JWTFilter.class);
+	
+	@Autowired
+    private JwtProperty jwtProperty;
 
     /**
-     * jwt需要做处理的连接
+     * jwt需要做处理的连接 
      */
     @Autowired
-    private JwtPatternUrl jwtPatternUrl;
+    private JwtPatternUrl jwtPatternUrl;// = SpringContextUtil.getBean(JwtPatternUrl.class);
     
+//    @Bean
+//    public JwtPatternUrl bulidJwtPatternUrl(){
+//        JwtPatternUrl jwtPatternUrl = new JwtPatternUrl();
+//        return jwtPatternUrl;
+//    }
     
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -75,6 +90,7 @@ public class JWTFilter implements  Filter{
             chain.doFilter(httpRequest, httpResponse);
             return;
 		}
+		
 		//System.out.println(jwtProperty.getAuthorFlag());
 	}
 
@@ -89,6 +105,8 @@ public class JWTFilter implements  Filter{
      * @return
      */
     private boolean isInclude(String url) {
+    	logger.info("jwtProperty -: {}",JSON.toJSONString(jwtProperty));
+    	logger.info("jwtPatternUrl -:{}",JSON.toJSONString(jwtPatternUrl));
     	if (jwtPatternUrl!=null) {
     		for (String patternUrl : jwtPatternUrl.getUrlPatterns()) {
                 Pattern p = Pattern.compile(patternUrl);

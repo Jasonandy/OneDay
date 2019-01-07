@@ -17,6 +17,7 @@ package cn.ucaner.oneday.config.jwt.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
 * @Package：cn.ucaner.oneday.jwt.properties   
@@ -29,8 +30,9 @@ import org.springframework.context.annotation.PropertySource;
 * @Modify marker：   
 * @version    V1.0
  */
+@Component
 @ConfigurationProperties(prefix = "jwt.info")
-@PropertySource("classpath:/jwt/jwt.properties")
+@PropertySource(value = "classpath:/jwt/jwt.properties")
 public class JwtProperty {
 
 	/**

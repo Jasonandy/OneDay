@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
 * @Package：cn.ucaner.oneday.jwt.properties   
@@ -31,8 +32,9 @@ import org.springframework.context.annotation.PropertySource;
 * @Modify marker：   
 * @version    V1.0
  */
+@Component
 @ConfigurationProperties(prefix = "jwt.exclude")
-@PropertySource("classpath:/jwt/jwt.properties")
+@PropertySource(value = "classpath:/jwt/jwt.properties")
 public class JwtPatternUrl {
 
 	/**

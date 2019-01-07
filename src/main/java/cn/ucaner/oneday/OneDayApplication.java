@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
 * @Package：cn.ucaner.oneday   
-* @ClassName：OneDayApplication   
+* @ClassName：OneDayApplication 
 * @Description：   <p> OneDayApplication </p>
 * @Author： - Jason    
 * @CreatTime：2019年1月3日 下午4:12:14   
