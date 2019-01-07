@@ -25,9 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.ucaner.oneday.common.utils.RandomHelper;
 import cn.ucaner.oneday.common.utils.SpringContextUtil;
 import cn.ucaner.oneday.common.vo.RespBody;
 import cn.ucaner.oneday.common.vo.RespBody.Status;
+import cn.ucaner.oneday.config.json.JsonLoader;
 import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
 import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 
@@ -60,8 +62,10 @@ public class ApiController {
 	@RequestMapping("/test")
     public RespBody jwtToken() {
 		HashMap<Object, Object> hashMap = new HashMap<>();
+		Object randomValueFromMap = RandomHelper.getRandomKeyFromMap(JsonLoader.ONE_DAY_MAP);
 		hashMap.put("name", "jwt");
 		hashMap.put("value", "pass");
+		hashMap.put("solgan", randomValueFromMap);
 		JwtPatternUrl bean = SpringContextUtil.getBean(JwtPatternUrl.class);
 		logger.info("Api--配置注入jwtPatternUrl:{},jwtProperty:{},BEAN:{}",JSON.toJSONString(jwtPatternUrl),JSON.toJSONString(jwtProperty),bean);
 		return new RespBody(Status.OK,hashMap);

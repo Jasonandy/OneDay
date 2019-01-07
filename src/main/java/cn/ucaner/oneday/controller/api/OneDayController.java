@@ -26,6 +26,7 @@ import cn.ucaner.oneday.common.utils.DateHelper;
 import cn.ucaner.oneday.common.utils.LunarUtils;
 import cn.ucaner.oneday.common.vo.OneDayVo;
 import cn.ucaner.oneday.common.vo.RespBody;
+import cn.ucaner.oneday.config.json.JsonLoader;
 
 /**     
 * @Package：cn.ucaner.oneday.controller.api   
@@ -78,6 +79,7 @@ public class OneDayController {
 			respBody.addOK(oneDayVo, "恭喜请求成功!");
 		} catch (Exception e) {
 			respBody.addError("请求Error!");
+			e.printStackTrace();
 			logger.error("NowDate:{} api /oneday/v1/oneday 调用失败--:{}",new Date().toString(),e.getMessage());
 		}
 		return respBody;
@@ -93,14 +95,15 @@ public class OneDayController {
 		String[] strToday = today.split("-");
 		oneDayVo.setYear(strToday[0]);
 		oneDayVo.setMonth(strToday[1]);
-		oneDayVo.setDay(strToday[2]);
+		oneDayVo.setDay(strToday[2]); 
 		oneDayVo.setWeek(DateHelper.getChineseWeek());
 		oneDayVo.setTime(new Date());
 		oneDayVo.setSlogan("勿忘初心方得始终！");
 		oneDayVo.setLunar(LunarUtils.getLunarDayStr());
-		oneDayVo.setAvoid("忌学习");
-		oneDayVo.setSuitable("宜睡觉");
-		//return oneDayVo;
+		//oneDayVo.setAvoid(RandomHelper.getRandomValueFromMap(JsonLoader.ONE_DAY_MAP));
+		//oneDayVo.setSuitable(RandomHelper.getRandomValueFromMap(JsonLoader.ONE_DAY_MAP));
+		oneDayVo.setAvoid(JsonLoader.getAvoid());
+		oneDayVo.setSuitable(JsonLoader.getSuitable());
 	}
 	
 

@@ -33,13 +33,13 @@ public class OneDayVo {
 	/**
 	 * suitable
 	 */
-	private String suitable;
+	private Object suitable;
 	
 	
 	/**
 	 * avoid 
 	 */
-	private String avoid;
+	private Object avoid;
 	
 	/**
 	 * year 
@@ -85,20 +85,24 @@ public class OneDayVo {
 		this.lunar = lunar;
 	}
 
-	public String getSuitable() {
+	public Object getSuitable() {
 		return suitable;
+	}
+	public void setSuitable(Object suitable) {
+		this.suitable = suitable;
+	}
+
+	public Object getAvoid() {
+		return avoid;
 	}
 
 	public void setSuitable(String suitable) {
 		this.suitable = suitable;
 	}
 
-	public String getAvoid() {
-		return avoid;
-	}
 
-	public void setAvoid(String avoid) {
-		this.avoid = avoid;
+	public void setAvoid(Object object) {
+		this.avoid = object;
 	}
 
 	public String getYear() {
