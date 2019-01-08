@@ -30,7 +30,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-
 /**
 * @Package：cn.ucaner.oneday.jfoenix.control   
 * @ClassName：CustomJFXDecorator   

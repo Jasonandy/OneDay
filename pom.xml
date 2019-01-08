@@ -255,6 +255,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>cn.ucaner.oneday.jfoenix.App</mainClass>
                     <executable>true</executable>
                 </configuration>
                 <executions>

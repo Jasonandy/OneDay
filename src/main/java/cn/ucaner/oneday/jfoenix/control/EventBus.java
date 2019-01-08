@@ -20,9 +20,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
 /**
- * Created by Snart Lu on 2018/2/5.
- */
-/**
 * @Package：cn.ucaner.oneday.jfoenix.control   
 * @ClassName：EventBus   
 * @Description：   <p> EventBus </p>
