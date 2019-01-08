@@ -41,7 +41,14 @@
         <!-- 百度语音模块 -->
         <baidu.api.version>4.7.0</baidu.api.version>
         
+        <!--  jwt -->
         <jwt.version>3.3.0</jwt.version>
+        
+        <!-- springboot-javafx  -->
+        <springboot-javafx.version>2.1.6</springboot-javafx.version>
+        
+        <!-- jfoenix  -->
+        <jfoenix.version>8.0.8</jfoenix.version>
 	</properties>
 
 	
@@ -162,6 +169,19 @@
 		   <version>2.4</version>
 		</dependency>
 		
+	  	<dependency>
+            <groupId>de.roskenet</groupId>
+            <artifactId>springboot-javafx-support</artifactId>
+            <version>${springboot-javafx.version}</version>
+        </dependency>
+        
+        <!-- jfoenix  -->
+        <dependency>
+		    <groupId>com.jfoenix</groupId>
+		    <artifactId>jfoenix</artifactId>
+		    <version>${jfoenix.version}</version>
+		</dependency>
+		
         
 	</dependencies>
 	
@@ -202,23 +222,35 @@
 	        </resource>
         </resources>
 	    <plugins>
+	    
+	    	<!-- springboot 项目打包插件 -->
 	        <plugin>
-	                <groupId>org.springframework.boot</groupId>
-	                <artifactId>spring-boot-maven-plugin</artifactId>
-	                <configuration>
-	                    <executable>true</executable>
-	                </configuration>
-	                <executions>
-	                    <execution>
-	                        <goals>
-	                            <goal>repackage</goal>
-	                        </goals>
-	                        <configuration>
-	                            <classifier>exec</classifier>
-	                        </configuration>
-	                    </execution>
-	                </executions>
-	            </plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+	        
+	        <!-- javaFx 项目打包插件 -->
+	         <!--<plugin>
+	            <groupId>com.zenjava</groupId>
+	            <artifactId>javafx-maven-plugin</artifactId>
+	            <configuration>
+	                <mainClass>cn.ucaner.oneday.jfx.controller.MainStageController</mainClass>
+	                <vendor>tuna</vendor>
+	            </configuration>
+	        </plugin> -->
 	    </plugins>
 	</build>
 </project>
