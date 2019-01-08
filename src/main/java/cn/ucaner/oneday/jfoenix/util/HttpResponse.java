@@ -13,55 +13,47 @@
 * ~ See the License for the specific language governing permissions and       *
 * ~ limitations under the License.                                            *
 ******************************************************************************/
-package cn.ucaner.oneday.jfx;
+package cn.ucaner.oneday.jfoenix.util;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import cn.ucaner.oneday.jfx.view.MainStageView;
-import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
-import javafx.stage.Stage;
+import org.apache.http.HttpStatus;
 
 /**
-* @Package：cn.ucaner.oneday.jfx   
-* @ClassName：MainController   
-* @Description：   <p> MainController</p>
+* @Package：cn.ucaner.oneday.jfoenix.util   
+* @ClassName：HttpResponse   
+* @Description：   <p> HttpResponse </p>
 * @Author： - Jason    
-* @CreatTime：2019年1月8日 下午4:21:04   
+* @CreatTime：2019年1月8日 下午7:15:02   
 * @Modify By：   
 * @ModifyTime：  2019年1月8日
 * @Modify marker：   
 * @version    V1.0
  */
-@SpringBootApplication
-public class MainController extends AbstractJavaFxApplicationSupport {
+public class HttpResponse {
+    private int status = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+    private String data;
+    private Exception exception;
 
-	/**
-	 * @Description: The entry point of application. 
-	 * @param args the input arguments
-	 * @Autor: @Jason - jasonandy@hotmail.com
-	 */
-    @SuppressWarnings("deprecation")
-	public static void main(String[] args) {
-        launchApp(MainController.class, MainStageView.class, args);
+    public int getStatus() {
+        return status;
     }
 
-    /**
-     * Start.
-     * @param stage the stage
-     * @exception Exception the exception
-     */
-	@Override
-    public void start(Stage stage) throws Exception {
-//		try {
-//			stage.setTitle("佛系小吴");
-//			stage.show();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-		//Scene scene = new Scene("", 600, 500);
-		//stage.setTitle("佛系小吴");
-		//stage.setScene(scene);
-		//stage.show();
-        super.start(stage);
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Exception getException() {
+        return exception;
+    }
+
+    public void setException(Exception exception) {
+        this.exception = exception;
     }
 }

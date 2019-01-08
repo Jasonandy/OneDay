@@ -13,55 +13,54 @@
 * ~ See the License for the specific language governing permissions and       *
 * ~ limitations under the License.                                            *
 ******************************************************************************/
-package cn.ucaner.oneday.jfx;
+package cn.ucaner.oneday.jfoenix.util;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.controlsfx.control.Notifications;
 
-import cn.ucaner.oneday.jfx.view.MainStageView;
-import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
-import javafx.stage.Stage;
+import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
 
 /**
-* @Package：cn.ucaner.oneday.jfx   
-* @ClassName：MainController   
-* @Description：   <p> MainController</p>
+* @Package：cn.ucaner.oneday.jfoenix.util   
+* @ClassName：NotificationUtils   
+* @Description：   <p> NotificationUtils </p>
 * @Author： - Jason    
-* @CreatTime：2019年1月8日 下午4:21:04   
+* @CreatTime：2019年1月8日 下午7:13:42   
 * @Modify By：   
 * @ModifyTime：  2019年1月8日
 * @Modify marker：   
 * @version    V1.0
  */
-@SpringBootApplication
-public class MainController extends AbstractJavaFxApplicationSupport {
+public class NotificationUtils {
+	
+    private static final String WARN_IMAGE_PATH = NotificationUtils.class.getResource("/jfx/image/notification-pane-warning.png").toExternalForm();
 
-	/**
-	 * @Description: The entry point of application. 
-	 * @param args the input arguments
-	 * @Autor: @Jason - jasonandy@hotmail.com
-	 */
-    @SuppressWarnings("deprecation")
-	public static void main(String[] args) {
-        launchApp(MainController.class, MainStageView.class, args);
+    private NotificationUtils() {
     }
 
-    /**
-     * Start.
-     * @param stage the stage
-     * @exception Exception the exception
-     */
-	@Override
-    public void start(Stage stage) throws Exception {
-//		try {
-//			stage.setTitle("佛系小吴");
-//			stage.show();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-		//Scene scene = new Scene("", 600, 500);
-		//stage.setTitle("佛系小吴");
-		//stage.setScene(scene);
-		//stage.show();
-        super.start(stage);
+    public static void notifyError(final String message, final Object owner) {
+        final ImageView WARN_IMAGE = new ImageView(WARN_IMAGE_PATH);
+        Notifications.create()
+            .title("信息")
+            .darkStyle()
+            .owner(owner)
+            .hideAfter(Duration.seconds(2))
+            .position(Pos.CENTER)
+            .graphic(WARN_IMAGE)
+            .text(message)
+            .show();
+    }
+
+    public static void notifySuccess(final String message, final Object owner) {
+        Notifications.create()
+            .title("信息")
+            .darkStyle()
+            .owner(owner)
+            .hideAfter(Duration.seconds(2))
+            .position(Pos.CENTER)
+            .text(message)
+            .showInformation();
     }
 }

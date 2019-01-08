@@ -32,7 +32,6 @@ import javafx.fxml.Initializable;
 * @Modify marker：   
 * @version    V1.0
  */
-@SuppressWarnings("restriction")
 @FXMLController
 public class MainStageController implements Initializable {
 
