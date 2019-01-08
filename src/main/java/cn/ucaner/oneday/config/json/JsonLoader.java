@@ -15,14 +15,16 @@
 ******************************************************************************/
 package cn.ucaner.oneday.config.json;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -47,7 +49,7 @@ public class JsonLoader {
 	/**
 	 * json文件位置
 	 */
-	private static final String ONEDAY_JSON_FILE_PATH = "classpath:json/oneday.json";
+	private static final String ONEDAY_JSON_FILE_PATH = "json/oneday.json";
 	//private static final String AVOID_JSON_FILE_PATH = "classpath:json/avoid.json";
 	//private static final String SUITABLE_JSON_FILE_PATH = "classpath:json/suitable.json";
 	
@@ -75,7 +77,25 @@ public class JsonLoader {
 	 */
 	public static void convert2Map(String filePath) {
 		try {
-			String jsonData = FileUtils.readFileToString(ResourceUtils.getFile(filePath));
+			//String jsonData = FileUtils.readFileToString(ResourceUtils.getFile(filePath));
+			ClassPathResource resource = new ClassPathResource(ONEDAY_JSON_FILE_PATH);
+			InputStream inputStream = resource.getInputStream();
+			//String jsonData = FileUtils.readFileToString(ResourceUtils.getFile(filePath));
+			
+			//------------------------------------------------------------------------------------
+	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+	        String tempStr;
+	        StringBuilder stringBuffer = new StringBuilder();
+	        try {
+	            while((tempStr=bufferedReader.readLine())!=null) {
+	            	stringBuffer.append(tempStr);
+	            }
+	        } catch (IOException e) {
+                e.printStackTrace();
+	        }
+	        String jsonData = stringBuffer.toString();
+	      //------------------------------------------------------------------------------------
+	        
 			ONE_DAY_MAP = JSON.parseObject(jsonData,new TypeReference<HashMap<String,Object>>() {});
 		} catch (IOException e) {
 			logger.error("本地json配置文件加载初始化异常:{}",e.getMessage());
@@ -94,8 +114,8 @@ public class JsonLoader {
 		//Object avoidObject = ONE_DAY_MAP.get("avoid");
 		//HashMap<String, Object> parseSuitableObject = JSON.parseObject(suitableObject.toString(),new TypeReference<HashMap<String,Object>>() {});
 		//HashMap<String, Object> parseAvoidObject= JSON.parseObject(avoidObject.toString(),new TypeReference<HashMap<String,Object>>() {});
-		System.out.println(getSuitable());
-		System.out.println(getAvoid());
+		System.out.println(JsonLoader.getSuitable());
+		System.out.println(JsonLoader.getAvoid());
 		//System.out.println(randomValueFromMap);
 	}
 	
