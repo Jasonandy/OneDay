@@ -15,8 +15,6 @@
 ******************************************************************************/
 package cn.ucaner.oneday.jfx;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import cn.ucaner.oneday.jfx.view.MainStageView;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.stage.Stage;
@@ -32,7 +30,7 @@ import javafx.stage.Stage;
 * @Modify marker：   
 * @version    V1.0
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class MainController extends AbstractJavaFxApplicationSupport {
 
 	/**

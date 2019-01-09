@@ -262,7 +262,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                    <!--  <mainClass>cn.ucaner.oneday.jfoenix.App</mainClass>  -->
-                   	<mainClass>cn.ucaner.oneday.OneDayApplication</mainClass>
+                   	<!-- <mainClass>cn.ucaner.oneday.OneDayApplication</mainClass> -->
                     <executable>true</executable>
                 </configuration>
                 <executions>
