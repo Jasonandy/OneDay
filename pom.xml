@@ -5,7 +5,7 @@
 	<!--  ONEDAY -->
 	<groupId>cn.ucaner</groupId>
 	<artifactId>oneday</artifactId>
-	<version>hntuna-1.0</version>
+	<version>tuna-1.0</version>
 	<packaging>jar</packaging>
 	
 	<name>oneday</name>
@@ -256,11 +256,12 @@
 	    <plugins>
 	    
 	    	<!-- springboot 项目打包插件 -->
-	        <!--  <plugin>
+	        <!-- --> 
+	        <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                   <mainClass>cn.ucaner.oneday.jfoenix.App</mainClass> 
+                   <!--  <mainClass>cn.ucaner.oneday.jfoenix.App</mainClass>  -->
                     <executable>true</executable>
                 </configuration>
                 <executions>
@@ -274,10 +275,10 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+            
 	        
 	        <!-- javaFx 项目打包插件 -->
-	        <plugin>
+	       <!--  <plugin>
 	            <groupId>com.zenjava</groupId>
 	            <artifactId>javafx-maven-plugin</artifactId>
 	            <configuration>
@@ -287,11 +288,12 @@
 	                <bundler>exe</bundler>
 	                <nativeReleaseVersion>${exe.project.version}</nativeReleaseVersion>
                     <appName>${exe.project.artifactId}</appName>
-                    <!-- <bundleArguments>
+                    <bundleArguments>
 	                    <icon>${project.basedir}/path/to/icon.ico</icon>
-	                </bundleArguments> -->
+	                </bundleArguments> 
 	            </configuration>
 	        </plugin>
+	        -->
 	    </plugins>
 	</build>
 </project>
