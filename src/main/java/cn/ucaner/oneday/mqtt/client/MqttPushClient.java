@@ -78,14 +78,25 @@ public class MqttPushClient {
         connect();
     }
 
+    /**
+     * @Description: 构造的时候会初始化 client对象
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     private void connect(){
 	    try {
+	    	//MemoryPersistence设置clientid的保存形式[默认为以内存保存]
 	        client = new MqttClient(MqttPropertiesHelper.MQTT_HOST, MqttPropertiesHelper.MQTT_CLIENTID, new MemoryPersistence());
+	        //MQTT的连接设置-options
 	        MqttConnectOptions options = new MqttConnectOptions();
+	        //设置是否清空session,这里如果设置为false表示服务器会保留客户端的连接记录
+	        //这里设置为true表示每次连接到服务器都以新的身份连接.
 	        options.setCleanSession(false);
 	        options.setUserName(MqttPropertiesHelper.MQTT_USER_NAME);
 	        options.setPassword(MqttPropertiesHelper.MQTT_PASSWORD.toCharArray());
+	        //设置超时时间(单位为秒)
 	        options.setConnectionTimeout(MqttPropertiesHelper.MQTT_TIMEOUT);
+	        //设置会话心跳时间-(单位为) 
+	        //服务器会每隔1.5*20秒的时间向客户端发送个消息判断客户端是否在线.但这个方法并没有重连的机制
 	        options.setKeepAliveInterval(MqttPropertiesHelper.MQTT_KEEP_ALIVE);
 	        try {
 	        	/**
@@ -93,16 +104,19 @@ public class MqttPushClient {
 	        	 */
 	            client.setCallback(new PushCallback());
 	            client.connect(options);
+	            logger.info("MqttClientConnecting.... URI:{},SID:{}",client.getCurrentServerURI(),client.getClientId());
 	        } catch (Exception e) {
-	            e.printStackTrace();
+	        	logger.error("MqttClientConnectingError:Msg1{}",e.getMessage());
+	            //e.printStackTrace();
 	        }
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	    	logger.error("MqttClientConnectingError:Msg2{}",e.getMessage());
+	        //e.printStackTrace();
 	    }
     }
 
     /**
-     * 发布，默认qos为0，非持久化
+     * 发布 默认qos为0，非持久化
      * @param topic
      * @param pushMessage
      */
@@ -120,6 +134,9 @@ public class MqttPushClient {
      */
     public void publish(int qos,boolean retained,String topic,PushPayload pushMessage){
         MqttMessage message = new MqttMessage();
+        /**
+         * 发布主题参数
+         */
         message.setQos(qos);
         message.setRetained(retained);
         message.setPayload(pushMessage.toString().getBytes());
@@ -129,12 +146,16 @@ public class MqttPushClient {
         }
         MqttDeliveryToken token;
         try {
+        	//发布主题
             token = mTopic.publish(message);
             token.waitForCompletion();
+            logger.info("PUBLISH-SUCCESS-TOKEN:{}",token.getMessage());
         } catch (MqttPersistenceException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("MqttPersistenceException{}",e.getMessage());
         } catch (MqttException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            logger.error("MqttException{}",e.getMessage());
         }
     }
 
@@ -155,20 +176,28 @@ public class MqttPushClient {
     public void subscribe(String topic,int qos){
         try {
             client.subscribe(topic, qos);
+            logger.info("SUBSCRIBE-SUCCESS-URI:{}-TOPIC:{}",client.getServerURI(),topic);
         } catch (MqttException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("MqttException{}",e.getMessage());
         }
     }
 
 
+    /**
+     * @Description: MqttPushClient.publish()
+     * @throws Exception 
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     public static void main(String[] args) throws Exception {
-        String kdTopic = "good";
+        String kdTopic = "World";
         PushPayload pushMessage = PushPayload
         							.getPushPayloadBuider()
         							.setMobile("18688880000")
         							.setContent("designModel")
         							.bulid();
         MqttPushClient.getInstance().publish(0, false, kdTopic, pushMessage);
+        MqttPushClient.getInstance().subscribe("World");
     }
 
 }

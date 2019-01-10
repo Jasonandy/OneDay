@@ -74,6 +74,17 @@ public class PushPayload {
         this.sound = sound;
     }
 
+    /**
+    * @Package：cn.ucaner.oneday.mqtt.vo   
+    * @ClassName：Builder   
+    * @Description：   <p> Builder 构建mqtt载体</p>
+    * @Author： - Jason    
+    * @CreatTime：2019年1月10日 上午8:34:13   
+    * @Modify By：   
+    * @ModifyTime：  2019年1月10日
+    * @Modify marker：   
+    * @version    V1.0
+     */
     public static class Builder{
         //推送类型
         private String type;
@@ -123,7 +134,11 @@ public class PushPayload {
         }
     }
 
-
+    /**
+     * @Description: getPushPayloadBuider
+     * @return Builder
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     public static Builder getPushPayloadBuider(){
         return new Builder();
     }

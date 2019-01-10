@@ -86,7 +86,7 @@ public class MqttPropertiesHelper {
 
    
    /**
-    * @Description: loadMqttProperties 加载配置文件
+    * @Description: loadMqttProperties 加载配置文件  
     * @return Properties
     * @Autor: @Jason - jasonandy@hotmail.com
     */

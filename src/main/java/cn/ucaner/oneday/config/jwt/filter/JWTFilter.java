@@ -33,8 +33,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import com.alibaba.fastjson.JSON;
-
 import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
 import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 
@@ -105,8 +103,8 @@ public class JWTFilter implements  Filter{
      * @return
      */
     private boolean isInclude(String url) {
-    	logger.info("jwtProperty -: {}",JSON.toJSONString(jwtProperty));
-    	logger.info("jwtPatternUrl -:{}",JSON.toJSONString(jwtPatternUrl));
+    	//logger.info("jwtProperty -: {}",JSON.toJSONString(jwtProperty));
+    	//logger.info("jwtPatternUrl -:{}",JSON.toJSONString(jwtPatternUrl));
     	if (jwtPatternUrl!=null) {
     		for (String patternUrl : jwtPatternUrl.getUrlPatterns()) {
                 Pattern p = Pattern.compile(patternUrl);
