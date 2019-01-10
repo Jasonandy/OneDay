@@ -35,11 +35,20 @@ import javafx.util.Duration;
  */
 public class NotificationUtils {
 	
+	/**
+	 * 通知utils
+	 */
     private static final String WARN_IMAGE_PATH = NotificationUtils.class.getResource("/jfx/image/notification-pane-warning.png").toExternalForm();
 
-    private NotificationUtils() {
-    }
+    //私有化 防止创建
+    private NotificationUtils() {} 
 
+    /**
+     * @Description: notifyError
+     * @param message
+     * @param owner 
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     public static void notifyError(final String message, final Object owner) {
         final ImageView WARN_IMAGE = new ImageView(WARN_IMAGE_PATH);
         Notifications.create()
@@ -53,6 +62,12 @@ public class NotificationUtils {
             .show();
     }
 
+    /**
+     * @Description: notifySuccess
+     * @param message
+     * @param owner void
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     public static void notifySuccess(final String message, final Object owner) {
         Notifications.create()
             .title("信息")
@@ -60,6 +75,7 @@ public class NotificationUtils {
             .owner(owner)
             .hideAfter(Duration.seconds(2))
             .position(Pos.CENTER)
+            //.graphic(WARN_IMAGE)
             .text(message)
             .showInformation();
     }

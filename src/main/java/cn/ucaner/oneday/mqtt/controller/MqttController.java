@@ -17,9 +17,11 @@ package cn.ucaner.oneday.mqtt.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.ucaner.oneday.common.utils.RandomHelper;
 import cn.ucaner.oneday.common.vo.RespBody;
 import cn.ucaner.oneday.mqtt.client.MqttPushClient;
 import cn.ucaner.oneday.mqtt.vo.PushPayload;
@@ -46,15 +48,21 @@ public class MqttController {
 	 * @return RespBody
 	 * @Autor: @Jason - jasonandy@hotmail.com
 	 */
-	@RequestMapping("/publish")
-    public RespBody publishMqtt(){
+	@RequestMapping(value="/publish/{topic}")
+    public RespBody publishMqtt(@PathVariable(value = "topic") String topic){
 		RespBody respBody = new RespBody();
+		String publicTopic = "oneday";
 		try {
-			String publicTopic = "oneday";
+			if (topic!=null) {
+				publicTopic=topic;
+			}
 	        PushPayload pushMessage = PushPayload
 	        							.getPushPayloadBuider()
-	        							.setMobile("18688880000")
+	        							.setTitle("MQTT远程PUSH")
+	        							.setMobile(String.valueOf(RandomHelper.getRandomLong(13788409988L)))
 	        							.setContent("HelloWorld!")
+	        							.setBadge(RandomHelper.getRandomInt(10))
+	        							.setType("TYPE")
 	        							.bulid();
 	        MqttPushClient.getInstance().publish(0, false, publicTopic, pushMessage);
 			logger.info("publish-发布成功-PushPayload:{}",pushMessage);
@@ -71,11 +79,12 @@ public class MqttController {
 	 * @return RespBody
 	 * @Autor: @Jason - jasonandy@hotmail.com
 	 */
-	@RequestMapping("/subscribe")
-    public RespBody subscribeMqtt(){
+	@RequestMapping(value ="/subscribe/{topic}/{qos}")
+    public RespBody subscribeMqtt(@PathVariable(value = "topic") String topic,@PathVariable(value = "qos") Integer qos){
 		RespBody respBody = new RespBody();
+		String publicTopic = "oneday";
 		try {
-			MqttPushClient.getInstance().subscribe("oneday");
+			MqttPushClient.getInstance().subscribe(topic==null?publicTopic:topic,qos==null?0:qos);
 			respBody.addOK("订阅成功!");
 		} catch (Exception e) {
 			respBody.addError("订阅失败!");

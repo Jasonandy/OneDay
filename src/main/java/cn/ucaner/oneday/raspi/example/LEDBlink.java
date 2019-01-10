@@ -50,19 +50,19 @@ public class LEDBlink {
     
     public static void main(String[] args) throws InterruptedException {
     	
-    	/**
-    	 * 定义编号为0的引脚为数字输出引脚,初始化为低电平
-    	 */
-        GpioPinDigitalOutput ledBlink = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "01" ,PinState.LOW);
-        
-        while(true){
-        	ledBlink.high();
-        	logger.info("LED亮起来!");
-            Thread.sleep(500);
-            ledBlink.low();
-            logger.info("LED被灭掉!");
-            Thread.sleep(500);
-            
-        }
+		/**
+		 * 定义编号为0的引脚为数字输出引脚,初始化为低电平
+		 */
+	    GpioPinDigitalOutput ledBlink = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "01" ,PinState.LOW);
+	    
+	    while(true){
+	    	ledBlink.high();
+	    	logger.info("LED亮起来!");
+	        Thread.sleep(500);
+	        ledBlink.low();
+	        logger.info("LED被灭掉!");
+	        Thread.sleep(500);
+	        
+	    }
 	}
 }

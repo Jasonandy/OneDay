@@ -54,9 +54,21 @@ import java.security.cert.X509Certificate;
  */
 public class HttpsClient {
 	
-    private static Logger logger = LoggerFactory.getLogger(HttpsClient.class.getName());
+    private static Logger logger = LoggerFactory.getLogger(HttpsClient.class);
+    
+    /**
+     * PoolingHttpClientConnectionManager 
+     */
     private static PoolingHttpClientConnectionManager connMgr;
+    
+    /**
+     * 请求相关配置
+     */
     private static RequestConfig requestConfig;
+    
+    /**
+     * 最大超时时间
+     */
     private static final int MAX_TIMEOUT = 15000;
 
     static {
@@ -113,6 +125,13 @@ public class HttpsClient {
         return httpResponse;
     }
 
+    /**
+     * @Description: doPostSSL -- ssl post请求
+     * @param apiUrl
+     * @param json
+     * @return HttpResponse
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     public static HttpResponse doPostSSL(String apiUrl, String json) {
         HttpResponse httpResp = new HttpResponse();
         CloseableHttpClient httpClient = HttpClients.custom()
@@ -155,6 +174,11 @@ public class HttpsClient {
         return httpResp;
     }
 
+    /**
+     * @Description: createSSLConnSocketFactory 
+     * @return SSLConnectionSocketFactory
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
         SSLConnectionSocketFactory socketFactory = null;
         try {
@@ -162,7 +186,6 @@ public class HttpsClient {
             SSLContext sslContext = SSLContexts.custom()
                 .loadTrustMaterial(null, trustAllStrategy)
                 .build();
-
             socketFactory = new SSLConnectionSocketFactory(sslContext);
         } catch (GeneralSecurityException e) {
             logger.error("createSSLConnSocketFactory error", e);

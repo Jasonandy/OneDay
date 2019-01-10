@@ -77,6 +77,12 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    /**
+     * @Description: logError 错误日志记录器
+     * @param t
+     * @param e void
+     * @Autor: @Jason - jasonandy@hotmail.com
+     */
     private static void logError(Thread t, Throwable e) {
         if (Platform.isFxApplicationThread()) {
             logger.error("Catch unexpected fx exception", e);

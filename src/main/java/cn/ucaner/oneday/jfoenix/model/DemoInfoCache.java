@@ -31,7 +31,15 @@ import java.io.Serializable;
 public class DemoInfoCache implements Serializable {
 	
     private static final long serialVersionUID = -4833209259288828879L;
+    
+    /**
+     * DemoInfo 
+     */
     private DemoInfo demoInfo;
+    
+    /**
+     * url 
+     */
     private String url;
 
     public DemoInfo getDemoInfo() {

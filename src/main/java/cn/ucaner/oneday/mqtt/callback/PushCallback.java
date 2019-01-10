@@ -21,8 +21,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.ucaner.oneday.mqtt.client.MqttPushClient;
-
 /**     
 * @Package：cn.ucaner.oneday.mqtt.callback   
 * @ClassName：PushCallback   
@@ -41,17 +39,17 @@ public class PushCallback implements MqttCallback{
 	@Override
 	public void connectionLost(Throwable cause) {
 		// 连接丢失后，一般在这里面进行重连
-        logger.info("**连接断开,可以做重连,开始重连...");
-        while (true){
-            try {//如果没有发生异常说明连接成功，如果发生异常，则死循环
-                Thread.sleep(1000);
-                MqttPushClient.getInstance();//重连
-                logger.info("***MQTT_RECONNECT***");
-                break;
-            }catch (Exception e){
-                continue;
-            }
-        }
+        logger.info("***连接断开-可以做重连-开始重连...");
+//        while (true){
+//            try {//如果没有发生异常说明连接成功，如果发生异常，则死循环
+//                Thread.sleep(1000);
+//                MqttPushClient.getInstance();//重连
+//                logger.info("***MQTT_RECONNECT***");
+//                break;
+//            }catch (Exception e){
+//                continue;
+//            }
+//        }
 	}
 
 	/**
@@ -60,8 +58,8 @@ public class PushCallback implements MqttCallback{
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		logger.info("------------------subscribe success-----------");
-		logger.info("**接收消息主题  :{} **:",topic);
-		logger.info("**接收消息Qos  :{} **:",message.getQos());
+		logger.info("**接收消息主题  :{} **",topic);
+		logger.info("**接收消息Qos  :{} **",message.getQos());
 		logger.info("**接收消息内容  :{} **",new String(message.getPayload()));
 		logger.info("----------------------------------------------");
 	}

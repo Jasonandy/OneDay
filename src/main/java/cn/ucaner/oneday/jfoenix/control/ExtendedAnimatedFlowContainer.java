@@ -46,10 +46,29 @@ import java.util.function.Function;
  */
 public class ExtendedAnimatedFlowContainer extends AnimatedFlowContainer implements FlowContainer<StackPane> {
 
+	/**
+	 * StackPane
+	 */
     private final StackPane view;
+    
+    /**
+     * Duration
+     */
     private final Duration duration;
+    
+    /**
+     * animationProducer 
+     */
     private Function<AnimatedFlowContainer, List<KeyFrame>> animationProducer;
+    
+    /**
+     * Timeline 
+     */
     private Timeline animation;
+    
+    /**
+     * ImageView 
+     */
     private final ImageView placeholder;
 
     /**

@@ -78,27 +78,64 @@ import javafx.stage.StageStyle;
  */
 @ViewController("/jfx/view/demo.fxml")
 public class DemoController {
-    private static Logger logger = LoggerFactory.getLogger(DemoController.class.getName());
+	
+    private static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
+    /**
+     * ViewFlowContext 
+     */
     @FXMLViewFlowContext
     private ViewFlowContext context;
+    
+    /**
+     * BorderPane 
+     */
     @FXML
     private BorderPane root;
+    
+    /**
+     * ToggleGroup 
+     */
     @FXML
     private ToggleGroup typeGroup;
+    
+    /**
+     * JFXRadioButton
+     */
     @FXML
     private JFXRadioButton radioFood, radioTool;
+    
+    /**
+     * JFXTextField - name - describe - url
+     */
     @FXML
     private JFXTextField nameField, descField, urlField;
+    
+    /**
+     * post 请求按钮
+     */
     @FXML
     private JFXButton postBtn;
 
+    /**
+     * Disposable 
+     */
     private Disposable disposable;
+    
+    /**
+     * spinnerStage
+     */
     private Stage spinnerStage;
+    
+    /**
+     * DemoInfo
+     */
     private DemoInfo demoInfo;
 
     private static final int TYPE_FOOD = 1;
+    
     private static final int TYPE_TOOL = 2;
+    
     private static final String CACHE_PATH = "data" + File.separator + "info.data";
 
     @PostConstruct

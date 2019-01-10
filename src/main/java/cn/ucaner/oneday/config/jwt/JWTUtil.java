@@ -43,11 +43,14 @@ public class JWTUtil {
 	 */
 	private static final String AUTHOR_FLAG = "raspi";
 	
+	//JwtPropertiesHelper.AUTHOR_FLAG
 	
 	/**
-	 * 过期时间 - 默认5分钟
+	 * 过期时间 - 默认5分钟 5 * 60 * 1000
 	 */
-	private static final long EXPIRE_TIME = 5 * 60 * 1000;
+	private static final long EXPIRE_TIME =  5 * 60 * 1000;
+	
+	//Long.parseLong(JwtPropertiesHelper.EXPIRE_TIME)
 	
 
 	/**
@@ -89,7 +92,7 @@ public class JWTUtil {
     /** 
      * @Description:    生成签名 5min后过期
      * @param username  用户名
-     * @param secret    用户的密码
+     * @param secret    用户的密钥
      * @return String   加密的token
      */
     public static String sign(String username, String secret) {

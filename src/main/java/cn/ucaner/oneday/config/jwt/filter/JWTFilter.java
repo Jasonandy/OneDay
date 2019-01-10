@@ -28,13 +28,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import cn.ucaner.oneday.config.jwt.properties.JwtPatternUrl;
-import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 
 /**
 * @Package：cn.ucaner.oneday.jwt.filter   
@@ -51,10 +48,10 @@ import cn.ucaner.oneday.config.jwt.properties.JwtProperty;
 //@Import(JwtPatternUrl.class)
 public class JWTFilter implements  Filter{
 	
-	private static final Logger logger = LoggerFactory.getLogger(JWTFilter.class);
+	//private static final Logger logger = LoggerFactory.getLogger(JWTFilter.class);
 	
-	@Autowired
-    private JwtProperty jwtProperty;
+	//@Autowired(required=true)
+    //private JwtProperty jwtProperty;
 
     /**
      * jwt需要做处理的连接 
@@ -117,7 +114,6 @@ public class JWTFilter implements  Filter{
 			return true;
 		}
     	return false;
-        
     }
 
 }

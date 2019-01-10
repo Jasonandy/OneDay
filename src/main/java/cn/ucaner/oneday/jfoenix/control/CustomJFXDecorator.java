@@ -42,10 +42,24 @@ import javafx.stage.Stage;
 * @version    V1.0
  */
 public class CustomJFXDecorator extends JFXDecorator {
+	
+	/**
+	* CustomJFXDecorator. 
+	* @param stage
+	* @param node
+	 */
     public CustomJFXDecorator(Stage stage, Node node) {
         this(stage, node, true, true, true);
     }
 
+    /**
+    * CustomJFXDecorator. 
+    * @param stage
+    * @param node
+    * @param fullScreen
+    * @param max
+    * @param min
+     */
     public CustomJFXDecorator(Stage stage, Node node, boolean fullScreen, boolean max, boolean min) {
         super(stage, node, fullScreen, max, min);
         // top area is a buttons container and with a class 'jfx-decorator-buttons-container'

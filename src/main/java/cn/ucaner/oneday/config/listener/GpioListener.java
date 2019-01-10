@@ -41,10 +41,8 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  */
 public class GpioListener  implements GpioPinListenerDigital{
 	
-
 	private static final Logger logger = LoggerFactory.getLogger(GpioListener.class);
 	
-
 	/**
 	 * GpioController 
 	 */
@@ -59,6 +57,10 @@ public class GpioListener  implements GpioPinListenerDigital{
 	 * output 输出
 	 */
 	private static final GpioPinDigitalOutput LED = CONTROLLER.provisionDigitalOutputPin(RaspiPin.GPIO_15);
+	
+	/**
+	 * Scanner-扫描器
+	 */
 	private Scanner scanner;
 	
 	/**

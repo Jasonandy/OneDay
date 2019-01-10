@@ -51,21 +51,39 @@ import javafx.util.Duration;
 @ViewController(value = "/jfx/view/main.fxml")
 public class MainController {
 	
+	/**
+	 * ViewFlowContext 
+	 */
     @FXMLViewFlowContext
     private ViewFlowContext context;
     
+    /**
+     * BorderPane 
+     */
     @FXML
     private BorderPane root;
     
+    /**
+     * MenuItem 
+     */
     @FXML
     private MenuItem home;
     
+    /**
+     * MenuItem
+     */
     @FXML
     private MenuItem demo;
     
+    /**
+     * MenuItem 
+     */
     @FXML
     private MenuItem save;
 
+    /**
+     * BooleanProperty
+     */
     private BooleanProperty saveDisable = new SimpleBooleanProperty();
 
     @PostConstruct
@@ -78,8 +96,9 @@ public class MainController {
         context.register("ContentFlowHandler", flowHandler);
         context.register("ContentFlow", innerFlow);
         final Duration containerAnimationDuration = Duration.millis(320);
-        root.setCenter(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
-            ContainerAnimations.SWIPE_LEFT)));
+        root.setCenter(flowHandler.start(
+        		new ExtendedAnimatedFlowContainer(containerAnimationDuration,
+        		ContainerAnimations.SWIPE_LEFT)));
         context.register("ContentPane", root.getCenter());
 
         // bind events on menu

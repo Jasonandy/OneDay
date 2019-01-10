@@ -41,7 +41,11 @@ public class CorsConfig {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CorsConfig.class);
 	
-	
+	/**
+	 * @Description: buildConfig
+	 * @return CorsConfiguration
+	 * @Autor: @Jason - jasonandy@hotmail.com
+	 */
 	private CorsConfiguration buildConfig() {
 	    CorsConfiguration corsConfiguration = new CorsConfiguration();
 	    corsConfiguration.setAllowCredentials(true);

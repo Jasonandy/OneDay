@@ -35,6 +35,9 @@ import org.apache.commons.lang3.RandomUtils;
 */
 public class RandomHelper extends RandomUtils{
 	
+	/**
+	 * Random - 随机对象
+	 */
 	private static Random random;
 
 	/**

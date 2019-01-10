@@ -31,8 +31,19 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class DemoInfo {
 	
+	/**
+	 * SimpleIntegerProperty 
+	 */
     private SimpleIntegerProperty type = new SimpleIntegerProperty();
+    
+    /**
+     * SimpleStringProperty
+     */
     private SimpleStringProperty name = new SimpleStringProperty();
+    
+    /**
+     * SimpleStringProperty
+     */
     private SimpleStringProperty description = new SimpleStringProperty();
 
 

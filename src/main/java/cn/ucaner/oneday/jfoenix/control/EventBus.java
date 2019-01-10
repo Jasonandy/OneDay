@@ -32,8 +32,14 @@ import io.reactivex.subjects.PublishSubject;
  */
 public class EventBus {
 	
+	/**
+	 * EventBus.INSTANCE 实例化
+	 */
     private static final EventBus INSTANCE = new EventBus();
 
+    /**
+     * mBusSubject 
+     */
     private final PublishSubject<Event> mBusSubject = PublishSubject.create();
 
     public static EventBus getInstance() {

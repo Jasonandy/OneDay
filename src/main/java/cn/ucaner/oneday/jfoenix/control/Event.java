@@ -28,6 +28,9 @@ package cn.ucaner.oneday.jfoenix.control;
  */
 public class Event {
 	
+	/**
+	 * 时间type类型
+	 */
     private EventType type;
 
     public Event(EventType type) {
@@ -42,7 +45,20 @@ public class Event {
         this.type = type;
     }
 
+    /**
+    * @Package：cn.ucaner.oneday.jfoenix.control   
+    * @ClassName：EventType   
+    * @Description：   <p> EventType </p>
+    * @Author： - Jason    
+    * @CreatTime：2019年1月10日 下午8:39:53   
+    * @Modify By：   
+    * @ModifyTime：  2019年1月10日
+    * @Modify marker：   
+    * @version    V1.0
+     */
     public static enum EventType {
-        SAVE
+        SAVE,   //保存
+        DELETE, //删除
+        EXIT	//退出
     }
 }

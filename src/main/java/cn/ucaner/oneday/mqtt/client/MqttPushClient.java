@@ -99,19 +99,21 @@ public class MqttPushClient {
 	        //服务器会每隔1.5*20秒的时间向客户端发送个消息判断客户端是否在线.但这个方法并没有重连的机制
 	        options.setKeepAliveInterval(MqttPropertiesHelper.MQTT_KEEP_ALIVE);
 	        try {
-	        	/**
-	        	 * 这里设置回调
-	        	 */
 	            client.setCallback(new PushCallback());
 	            client.connect(options);
 	            logger.info("MqttClientConnecting.... URI:{},SID:{}",client.getCurrentServerURI(),client.getClientId());
 	        } catch (Exception e) {
-	        	logger.error("MqttClientConnectingError:Msg1{}",e.getMessage());
+	        	logger.error("MqttClientConnectingError:Msg1:{}",e.getMessage());
 	            //e.printStackTrace();
+	        	/**
+	        	 *自定义异常
+	        	 */
+	            throw new MqttException(e);
 	        }
 	    } catch (Exception e) {
-	    	logger.error("MqttClientConnectingError:Msg2{}",e.getMessage());
+	    	logger.error("MqttClientConnecError:Msg-try:{}",e.getMessage());
 	        //e.printStackTrace();
+	    	//throw new Exception(e);
 	    }
     }
 
@@ -151,11 +153,11 @@ public class MqttPushClient {
             token.waitForCompletion();
             logger.info("PUBLISH-SUCCESS-TOKEN:{},TOPIC-{}",token.getMessage(),mTopic.getName());
         } catch (MqttPersistenceException e) {
-            //e.printStackTrace();
-            logger.error("MqttPersistenceException{}",e.getMessage());
+            e.printStackTrace();
+            logger.error("MqttPersistenceException:{}",e.getMessage());
         } catch (MqttException e) {
-           // e.printStackTrace();
-            logger.error("MqttException{}",e.getMessage());
+            e.printStackTrace();
+            logger.error("MqttException:{}",e.getMessage());
         }
     }
 
@@ -178,7 +180,7 @@ public class MqttPushClient {
             client.subscribe(topic, qos);
             logger.info("SUBSCRIBE-SUCCESS-URI:{}-TOPIC:{}",client.getServerURI(),topic);
         } catch (MqttException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             logger.error("MqttException{}",e.getMessage());
         }
     }
@@ -190,14 +192,14 @@ public class MqttPushClient {
      * @Autor: @Jason - jasonandy@hotmail.com
      */
     public static void main(String[] args) throws Exception {
-        String kdTopic = "World";
+        String kdTopic = "good";
         PushPayload pushMessage = PushPayload
         							.getPushPayloadBuider()
-        							.setMobile("18688880000")
+        							.setMobile("2222222222222")
         							.setContent("designModel")
         							.bulid();
         MqttPushClient.getInstance().publish(0, false, kdTopic, pushMessage);
-        MqttPushClient.getInstance().subscribe("World");
+       // MqttPushClient.getInstance().subscribe("good");
     }
 
 }

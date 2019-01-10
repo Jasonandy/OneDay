@@ -29,8 +29,20 @@ import org.apache.http.HttpStatus;
 * @version    V1.0
  */
 public class HttpResponse {
+	
+	/**
+	 * SC_INTERNAL_SERVER_ERROR - 500
+	 */
     private int status = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+    
+    /**
+     * data
+     */
     private String data;
+    
+    /**
+     * 异常
+     */
     private Exception exception;
 
     public int getStatus() {
