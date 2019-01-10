@@ -149,7 +149,7 @@ public class MqttPushClient {
         	//发布主题
             token = mTopic.publish(message);
             token.waitForCompletion();
-            logger.info("PUBLISH-SUCCESS-TOKEN:{}",token.getMessage());
+            logger.info("PUBLISH-SUCCESS-TOKEN:{},TOPIC-{}",token.getMessage(),mTopic.getName());
         } catch (MqttPersistenceException e) {
             //e.printStackTrace();
             logger.error("MqttPersistenceException{}",e.getMessage());
