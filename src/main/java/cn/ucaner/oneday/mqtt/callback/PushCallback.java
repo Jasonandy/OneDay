@@ -57,7 +57,7 @@ public class PushCallback implements MqttCallback{
 	 */
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
-		logger.info("------------------subscribe success-----------");
+		logger.info("-------------messageArrived success-----------");
 		logger.info("**接收消息主题  :{} **",topic);
 		logger.info("**接收消息Qos  :{} **",message.getQos());
 		logger.info("**接收消息内容  :{} **",new String(message.getPayload()));

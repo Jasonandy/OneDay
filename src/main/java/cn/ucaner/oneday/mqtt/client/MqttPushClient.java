@@ -46,6 +46,12 @@ public class MqttPushClient {
 	private static final Logger logger = LoggerFactory.getLogger(MqttPushClient.class);
 	
 	/**
+	 * 是否清空session,如果设置为false表示服务器会保留客户端的连接记录.
+	 * true表示每次连接到服务器都以新的身份连接.
+	 */
+	private static final boolean IS_NEW_CON = false;
+	
+	/**
 	 * MqttClient 
 	 */
 	private MqttClient client;
@@ -90,7 +96,7 @@ public class MqttPushClient {
 	        MqttConnectOptions options = new MqttConnectOptions();
 	        //设置是否清空session,这里如果设置为false表示服务器会保留客户端的连接记录
 	        //这里设置为true表示每次连接到服务器都以新的身份连接.
-	        options.setCleanSession(false);
+	        options.setCleanSession(IS_NEW_CON);
 	        options.setUserName(MqttPropertiesHelper.MQTT_USER_NAME);
 	        options.setPassword(MqttPropertiesHelper.MQTT_PASSWORD.toCharArray());
 	        //设置超时时间(单位为秒)
@@ -103,7 +109,7 @@ public class MqttPushClient {
 	            client.connect(options);
 	            logger.info("MqttClientConnecting.... URI:{},SID:{}",client.getCurrentServerURI(),client.getClientId());
 	        } catch (Exception e) {
-	        	logger.error("MqttClientConnectingError:Msg1:{}",e.getMessage());
+	        	logger.error("MqttClientConnectingError:Msg:{}",e.getMessage());
 	            //e.printStackTrace();
 	        	/**
 	        	 *自定义异常
@@ -118,7 +124,7 @@ public class MqttPushClient {
     }
 
     /**
-     * 发布 默认qos为0，非持久化
+     * 发布 默认qos为0 - 非持久化
      * @param topic
      * @param pushMessage
      */
