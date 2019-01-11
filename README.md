@@ -72,6 +72,15 @@ nohup java -jar oneday-tuna-1.0-exec.jar &
 
 ```
 
+```properties
+##树莓派部署异常 javafx异常
+missing `server' JVM at `/usr/lib/jvm/java-8-openjdk-armhf/jre/lib/arm/server/libjvm.so'.
+
+sudo apt-get purge openjdk-8-jre-headless
+sudo apt-get install openjdk-8-jre-headless
+sudo apt-get install openjdk-8-jre
+```
+
 
 ## Contact
 - **Below is my personal contact information. Welcome to exchange and study.**
